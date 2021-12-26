@@ -1,0 +1,41 @@
+{
+  "name": "@zwj9297/sync-queue",
+  "version": "0.0.1",
+  "description": "Synchronous queue based on Promise.",
+  "keywords": [
+    "Promise",
+    "sync",
+    "queue"
+  ],
+  "main": "dist/sync-queue.cjs.js",
+  "module": "dist/sync-queue.esm.js",
+  "typings": "dist/sync-queue.d.ts",
+  "scripts": {
+    "build": "gulp",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zwj9297/sync-queue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zwj9297/sync-queue/issues"
+  },
+  "homepage": "https://github.com/zwj9297/sync-queue#readme",
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "chai": "^4.3.4",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-uglify": "^3.0.2",
+    "mocha": "^9.1.3",
+    "typescript": "^4.5.4"
+  }
+}
