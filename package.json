@@ -10,6 +10,7 @@
   "main": "dist/sync-queue.cjs.js",
   "module": "dist/sync-queue.esm.js",
   "typings": "dist/sync-queue.d.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "gulp",
     "test": "mocha"
@@ -18,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/zwj9297/sync-queue.git"
   },
-  "author": "",
+  "author": "zwj9297",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zwj9297/sync-queue/issues"

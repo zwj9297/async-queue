@@ -1,61 +1,73 @@
 
 type Task = (result: any) => any
 type Tasks = Task[]
+type State = 0 | 1 | 2 | 3 // 未开始|进行中|已完成|异常
+
 interface Queue extends Tasks {
+  point: number
+  state: State
   start: () => void
   retry: () => void
   restart: () => void
 }
-type State = 0 | 1 | 2 | 3 // 未开始|进行中|已完成|异常
 
-export const createQueue = (tasks: any[], success = (result: any) => {}, fail = (err: Error) => { console.error(err) }) => {
-  const todos = [...tasks]
-  let point = 0
-  let state: State = 0
+export const createQueue = (
+  tasks: any[],
+  success = (result: any) => {},
+  fail = (err: Error) => { console.error(err) }
+): Queue => {
+  const todos = tasks.map((task) => {
+    if (task?.constructor === Function) return task
+    return () => task
+  })
+  const initPoint = 0
+  const initState: State = 0
   let result: any = undefined
   const queue: Queue = Object.assign([], {
+    point: initPoint,
+    state: initState,
     start: () => {
-      if (state === 1) {
+      if (queue.state === 1) {
         console.warn('The queue is running.')
         return
-      } else if (state === 2) {
+      } else if (queue.state === 2) {
         console.warn('The queue has ended. Please use restart.')
         return
-      } else if (state === 3) {
+      } else if (queue.state === 3) {
         console.warn('The queue is abnormal. Please use retry or restart.')
         return
       }
-      state = 1
+      queue.state = 1
       const execute = async () => {
-        for(; point < todos.length; point++) {
-          result = await todos[point](result)
+        for(; queue.point < todos.length; queue.point++) {
+          result = await todos[queue.point](result)
         }
       }
       execute()
       .then(() => {
-        state = 2
+        queue.state = 2
         success(result)
       })
       .catch((err) => {
-        state = 3
+        queue.state = 3
         fail(err)
       })
     },
     retry: () => {
-      if (state === 0) {
+      if (queue.state === 0) {
         console.warn('The queue did not start. Please use start.')
-      } else if (state === 1) {
+      } else if (queue.state === 1) {
         console.warn('The queue is running.')
         return
-      } else if (state === 2) {
+      } else if (queue.state === 2) {
         console.warn('The queue has no abnormal.')
       }
-      state = 0
+      queue.state = initState
       queue.start()
     },
     restart: () => {
-      point = 0
-      state = 0
+      queue.point = initPoint
+      queue.state = initState
       result = undefined
       queue.start()
     }
