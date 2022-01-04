@@ -1,6 +1,6 @@
 {
   "name": "@zwj9297/sync-queue",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Synchronous queue based on Promise.",
   "keywords": [
     "Promise",
@@ -10,7 +10,9 @@
   "main": "dist/sync-queue.cjs.js",
   "module": "dist/sync-queue.esm.js",
   "typings": "dist/sync-queue.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "gulp",
     "test": "mocha"
