@@ -1,13 +1,13 @@
-# async-queue
+# sync-queue
 基于Promise实现的同步任务队列。
 
 ## Installation
 ```shell
 # Using npm:
-npm install @zwj9297/async-queue
+npm install @zwj9297/sync-queue
 
 # Using yarn:
-yarn add @zwj9297/async-queue
+yarn add @zwj9297/sync-queue
 ```
 
 ## API
