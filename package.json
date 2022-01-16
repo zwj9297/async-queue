@@ -1,6 +1,6 @@
 {
   "name": "@zwj9297/sync-queue",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Synchronous queue based on Promise.",
   "keywords": [
     "Promise",
